@@ -27,7 +27,7 @@ def get_flight_by_id(id):
 # http://127.0.0.1:5000/flights/555
 
 
-# ADDING NEW FLIGHTS
+################################## ADDING NEW FLIGHTS
 
 @app.route('/flights', methods=['POST'])
 def add_flight():

@@ -1,4 +1,4 @@
-
+#list containing a dictionary of flights
 flights = [
     {"from_city": "London",
      "to_city": "Helsinki",
