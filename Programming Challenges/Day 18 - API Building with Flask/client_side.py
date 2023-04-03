@@ -41,30 +41,31 @@ import requests
 
 
 
-# # PUT REQUEST
-
-updated_flight = {
-     "new content": "test",
-     "flight_id": 555
-}
-
-fid = 555
-
-headers = {'content-type': 'application/json'}
-result = requests.put(
-    'http://127.0.0.1:5000/flights/{}'.format(fid), headers=headers, data=json.dumps(updated_flight)
-)
-pprint(result.json())
+# # # PUT REQUEST
 #
-#
-
-# # DELETE REQUEST
+# updated_flight = {
+#      "new content": "test",
+#      "flight_id": 555
+# }
 #
 # fid = 555
 #
 # headers = {'content-type': 'application/json'}
-# result = requests.delete(
-#     'http://127.0.0.1:5000/flights/{}'.format(fid), headers=headers
+# result = requests.put(
+#     'http://127.0.0.1:5000/flights/{}'.format(fid), headers=headers, data=json.dumps(updated_flight)
 # )
-#
-# print(result)
+# pprint(result.json())
+# #
+
+
+# DELETE REQUEST
+
+fid = 555
+
+headers = {'content-type': 'application/json'}
+result = requests.delete(
+    'http://127.0.0.1:5000/flights/{}'.format(fid), headers=headers #not additional data code
+)
+
+print(result.status_code)
+print(result.json())
