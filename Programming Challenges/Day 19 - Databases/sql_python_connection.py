@@ -107,7 +107,7 @@ import datetime as dt
 record = {
     'OrderDate': '2020-12-15',
     'Region': 'Central',
-    'Rep': 'Johnson',
+    'Rep': 'hi',
     'Item': 'post-it-notes',
     'Units': 220,
     'UnitCost': 2.5,
@@ -117,13 +117,44 @@ record = {
 
 def insert_new_record(record):
     try:
-        """YOUR CODE HERE"""
+        db_name = 'tests'
+        db_connection = _connect_to_db(db_name)
+        cur = db_connection.cursor()
+        print(f'Connected to DB:{db_name}')
 
-    except Exception:
+        query = """INSERT INTO abcreport ({}) VALUES ('{}', '{}', '{}', '{}', {}, {}, {})""".format(
+            ', '.join(record.keys()),
+            record['OrderDate'],
+            record['Region'],
+            record['Rep'],
+            record['Item'],
+            record['Units'],
+            record['UnitCost'],
+            record['Total'],
+        )
+
+        cur.execute(query)
+        #need to use DB connection to commmit the changes- like the transactions
+
+        db_connection.commit()
+        cur.close()
+
+
+
+    # connects the variables into one string in the record, separated by a comma and a string
+    # for the values,
+
+
+    except Exception as e:
+        print(f'Error raised - {str(e)}')
         raise DbConnectionError("Failed to read data from DB")
+    # how to specifically see what the error is
+
 
     finally:
-        """YOUR CODE HERE"""
+        if db_connection:
+            db_connection.close()
+            print('DB connection is closed')
 
     print("Record added to DB")
 
@@ -131,8 +162,8 @@ def insert_new_record(record):
 def main():
     pass
     # get_all_records()
-    get_all_records_for_rep('Morgan')
-    # insert_new_record(record)
+    # get_all_records_for_rep('Morgan')
+    insert_new_record(record)
 
 
 if __name__ == '__main__':
