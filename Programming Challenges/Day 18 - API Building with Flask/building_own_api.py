@@ -54,7 +54,7 @@ def update_flight(id):
 def delete_flight(id):
     index = get_index(id, flights)
     deleted = flights.pop(index)
-    return jsonify(deleted), 200
+    return jsonify(deleted)
 
 
 if __name__ == '__main__':

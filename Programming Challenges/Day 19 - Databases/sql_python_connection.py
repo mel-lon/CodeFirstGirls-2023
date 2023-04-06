@@ -8,30 +8,52 @@ class DbConnectionError(Exception):
 
 def _connect_to_db(db_name):
     try:
-        """
-        YOUR CODE HERE
-        """
+        # connection is stored in a variable
+        cnx = mysql.connector.connect(
+            host=HOST,
+            user=USER,
+            password=PASSWORD,
+            auth_plugin='mysql_native_password', # sets the authorisation we'll use, authenitcates it on mysql
+            database=db_name
+        )
+        return cnx
         pass
     except Exception as e:
         print(f'failed to connect + {str(e)}')
 
+# _connect_to_db('tests')
 
 
 # EXAMPLE 1
 def get_all_records():
     try:
-        """
-        YOUR CODE HERE
-        """
-        pass
+        db_name = 'tests'
+        db_connection = _connect_to_db(db_name)
+        cur = db_connection.cursor()
+        print(f'Connected to DB: {db_name}')
+# set up or connection in the DB
+
+        query = """SELECT * FROM abcreport"""
+        # use the cursor to execute the query
+        cur.execute(query)
+        result = cur.fetchall()
+# set up a query and ran it through the cursor
+        for i in result:
+            print(i)
+# printed the results
+        cur.close() # must close the query
+# closed the cursor
+
     except Exception:
         raise DbConnectionError("Failed to read data from DB")
 
     finally:
-        """
-        YOUR CODE HERE
-        """
+        if db_connection:
+            db_connection.close()
+            print("DB connection is closed")
         pass
+
+
 
 
 # EXAMPLE 2

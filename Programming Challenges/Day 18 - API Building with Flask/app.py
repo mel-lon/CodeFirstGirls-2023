@@ -34,10 +34,10 @@ def get_flights2(id):
     return jsonify(flight)
 
 
-
-@app.route('/flights/<string:name>')
-def get_flight_by_id(name):
-    return jsonify(flights_data)
+#
+# @app.route('/flights/<string:name>')
+# def get_flight_by_id(name):
+#     return jsonify(flights_data)
 
 ########################################################HOW TO GET RESOURCES
 
