@@ -70,15 +70,30 @@ def calc_commission(sold_items, commission):
 
 def get_all_records_for_rep(rep_name):
     try:
-        """
-        YOUR CODE HERE
-        """
+        db_name = 'tests'
+        db_connection = _connect_to_db(db_name)
+        cur = db_connection.cursor()
+        print(f'Connected to DB: {db_name}')
+
+        query = f"""SELECT Item, Units, Total FROM abcreport WHERE Rep = '{rep_name}'; """
+        cur.execute(query)
+        result = cur.fetchall()
+
+        for i in result:
+            print(i)
+
+        cur.close()
+        comp = round(calc_commission(result, commission=10), 2)
+        # rounding to 2 dep when calculating commission
+
 
     except Exception:
         raise DbConnectionError("Failed to read data from DB")
 
     finally:
-        """YOUR CODE HERE"""
+        if db_connection:
+            db_connection.close()
+            print('DB Connection is closed')
         pass
 
     # print("Commission for {} is £{}".format(rep_name, comp))
@@ -116,7 +131,7 @@ def insert_new_record(record):
 def main():
     pass
     # get_all_records()
-    # get_all_records_for_rep('Morgan')
+    get_all_records_for_rep('Morgan')
     # insert_new_record(record)
 
 
