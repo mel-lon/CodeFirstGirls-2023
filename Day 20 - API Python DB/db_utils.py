@@ -71,33 +71,33 @@ def get_all_booking_availability(_date): # takes dates and returns the available
             print('DB connection is closed')
     return availability
 
+###################################### Adding a booking
+def add_booking(_date, teamMember, time, customer):
+    try:
+        db_name = 'nano'
+        db_connection = _connect_to_db(db_name)
+        cur = db_connection.cursor()
+        print("Connected to DB: %s" % db_name)
 
-# def add_booking(_date, teamMember, time, customer):
-#     try:
-#         db_name = 'nano'
-#         db_connection = _connect_to_db(db_name)
-#         cur = db_connection.cursor()
-#         print("Connected to DB: %s" % db_name)
-#
-#         query = f"""
-#         UPDATE salon_bookings
-#         SET
-#         `{time}` = 1,
-#         `{time}-booking-id`= '{customer}'
-#         WHERE
-#         teamMember ='{teamMember}' AND bookingDate='{_date}';
-#         """
-#         cur.execute(query)
-#         db_connection.commit()
-#         cur.close()
-#     except Exception:
-#         raise DbConnectionError("Failed to read data from the DB")
-#     finally:
-#         if db_connection:
-#             db_connection.close()
-#             print('DB connection is closed')
+        query = f"""
+        UPDATE salon_bookings
+        SET
+        `{time}` = 1,
+        `{time}-booking-id`= '{customer}'
+        WHERE
+        teamMember ='{teamMember}' AND bookingDate='{_date}';
+        """
+        cur.execute(query)
+        db_connection.commit()
+        cur.close()
+    except Exception:
+        raise DbConnectionError("Failed to read data from the DB")
+    finally:
+        if db_connection:
+            db_connection.close()
+            print('DB connection is closed')
 
 
 if __name__ == '__main__':
     get_all_booking_availability('2023-03-31')
-    # print(add_booking('2023-03-31', 'Peter','15-16','Moses'))
+    print(add_booking('2023-03-31', 'Peter','15-16','Moses'))
