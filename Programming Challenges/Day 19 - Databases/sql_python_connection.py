@@ -159,11 +159,57 @@ def insert_new_record(record):
     print("Record added to DB")
 
 
+
+def update_record(col, new_value, filter_column, filter_value):
+    try:
+        db_name = 'tests'
+        db_connection = _connect_to_db(db_name)
+        cur = db_connection.cursor()
+        print(f'Connected to DB: {db_name}')
+
+        # query = """
+        #         UPDATE abcreport
+        #         SET Item = 'Pencils'
+        #         WHERE Rep = 'Fatma'
+        # """
+# static, hard coded new values, so how can i make it dynamic?
+
+        query = f"""
+                UPDATE abcreport
+                SET {col} = '{new_value}'
+                WHERE {filter_column} = '{filter_value}'
+        """
+        cur.execute(query)
+        db_connection.commit()
+        cur.close()
+        print('values added')
+
+
+
+    except Exception as e:
+        print(f"Error raised = {str(e)}")
+        raise DbConnectionError('Failed to read from DB')
+
+    finally:
+        if db_connection:
+            db_connection.close()
+            print('DB connection is closed')
+
+
+
+
+
+
+
+
+
+
 def main():
     pass
     # get_all_records()
     # get_all_records_for_rep('Morgan')
-    insert_new_record(record)
+    # insert_new_record(record)
+    update_record(col='Item', new_value='Pencils', filter_column='Rep', filter_value='Johnson')
 
 
 if __name__ == '__main__':
