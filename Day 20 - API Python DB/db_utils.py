@@ -16,22 +16,23 @@ def _connect_to_db(db_name):
     )
     return cnx
 
-#
-# def _map_values(schedule):
-#     mapped = []
-#     for item in schedule:
-#         mapped.append({
-#             'name': item[0],
-#             '12-13': 'Not Available' if item[1] else 'Available',
-#             '13-14': 'Not Available' if item[2] else 'Available',
-#             '14-15': 'Not Available' if item[3] else 'Available',
-#             '15-16': 'Not Available' if item[4] else 'Available',
-#             '16-17': 'Not Available' if item[5] else 'Available',
-#             '17-18': 'Not Available' if item[6] else 'Available',
-#         })
-#     return mapped
+# Making all the null values, assigning an actual value for them
+def _map_values(schedule):
+    mapped = []
+    for item in schedule:
+        mapped.append({
+            'name': item[0],
+            '12-13': 'Not Available' if item[1] else 'Available',
+            '13-14': 'Not Available' if item[2] else 'Available',
+            '14-15': 'Not Available' if item[3] else 'Available',
+            '15-16': 'Not Available' if item[4] else 'Available',
+            '16-17': 'Not Available' if item[5] else 'Available',
+            '17-18': 'Not Available' if item[6] else 'Available',
+        })
+    return mapped
 
 
+################################################### Getting the booking that are availabe
 # EXAMPLE 1
 def get_all_booking_availability(_date): # takes dates and returns the available bookings
     availability = [] # empty list where well store our response
@@ -39,7 +40,7 @@ def get_all_booking_availability(_date): # takes dates and returns the available
     try:
         db_name = 'nano'
         db_connection = _connect_to_db(db_name)
-        cur = db_connection.cursor(dictionary=True)
+        cur = db_connection.cursor()
         print(f'connected to DB: {db_name}')
 
         # db_name = 'nano'
@@ -60,9 +61,6 @@ def get_all_booking_availability(_date): # takes dates and returns the available
         print(availability) # comes as a tupule, remove the dictionary=true
 
         cur.close()
-
-
-
 
 
     except Exception:
