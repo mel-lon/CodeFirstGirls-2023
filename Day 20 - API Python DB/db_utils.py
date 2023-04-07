@@ -39,7 +39,7 @@ def get_all_booking_availability(_date): # takes dates and returns the available
     try:
         db_name = 'nano'
         db_connection = _connect_to_db(db_name)
-        cur = db_connection.cursor()
+        cur = db_connection.cursor(dictionary=True)
         print(f'connected to DB: {db_name}')
 
         # db_name = 'nano'
@@ -52,13 +52,18 @@ def get_all_booking_availability(_date): # takes dates and returns the available
         FROM salon_bookings
         WHERE bookingDate='{}';
         """.format(_date)
-        #
-        # cur.execute(query)
-        #
-        # result = cur.fetchall() # list with db records where each record is a tuple
-        # availability = _map_values(result)
-        #
-        # cur.close()
+
+        cur.execute(query) # Like transactions, they have to beexecuted
+        result = cur.fetchall() # list with db records where each record is a tuple
+
+        availability = result
+        print(availability) # comes as a tupule, remove the dictionary=true
+
+        cur.close()
+
+
+
+
 
     except Exception:
         raise DbConnectionError("Failed to read data from the DB")
