@@ -1,11 +1,11 @@
 from flask import Flask, jsonify, request
-from db_utils import get_all_booking_availability, add_booking
+from db_utils import get_all_booking_availability #add_booking
 
 app = Flask(__name__)
 
 
 # Get availability - /availability/<string:date>
-@app.route('/availability/<string:date>')
+@app.route('/availability/<string:date>') # Enter this, running the client url
 def get_bookings(date):
     result = get_all_booking_availability(date)
     return jsonify(result) # this endpoint is incomplete without this
