@@ -80,32 +80,31 @@ with open('space_station_location.txt', 'a') as text_file:
 #
 # '''EXAMPLE SOLUTION'''
 #
-# # import requests
-# # from datetime import datetime
-# # from pprint import pprint as pp
+import requests
+from datetime import datetime
+from pprint import pprint as pp
 # #
-# # # this endpoint tells the current location for international space station
-# # endpoint3 = 'http://api.open-notify.org/iss-now.json'
+# this endpoint tells the current location for international space station
+endpoint3 = 'http://api.open-notify.org/iss-now.json'
+response = requests.get(endpoint3)
 # #
-# # response = requests.get(endpoint3)
+data = response.json()
+pp(data)
 # #
-# # data = response.json()
-# # pp(data)
+timestamp = data['timestamp']
+dt_object = datetime.fromtimestamp(timestamp)
 # #
-# # timestamp = data['timestamp']
-# # dt_object = datetime.fromtimestamp(timestamp)
+print("dt_object =", dt_object)
+print("type(dt_object) =", type(dt_object))
 # #
-# # print("dt_object =", dt_object)
-# # print("type(dt_object) =", type(dt_object))
-# #
-# # msg = "At {dt} the ISS was passing the following location, latitude: {lat} and longitude: {lon}".format(
-# #     dt = dt_object,
-# #     lat = data['iss_position']['latitude'],
-# #     lon = data['iss_position']['longitude']
+msg = "At {dt} the ISS was passing the following location, latitude: {lat} and longitude: {lon}".format(
+     dt = dt_object,
+    lat = data['iss_position']['latitude'],
+     lon = data['iss_position']['longitude']
 # # )
 # #
-# # with open('space_station_location.txt', 'a') as text_file:
-# #     text_file.write(msg + '\n')
+ with open('space_station_location.txt', 'a') as text_file:
+# # text_file.write(msg + '\n')
 #
 #
 #
@@ -122,28 +121,27 @@ with open('space_station_location.txt', 'a') as text_file:
 #  location q, unit and appid which is your personal API key.
 # """
 #
-# # import requests
-# # from pprint import pprint as pp
+import requests
+from pprint import pprint as pp
 # #
-# # appid = ''  # key to connect to the API --> create a free account and paste your OWN key here
+appid = ''  # key to connect to the API --> create a free account and paste your OWN key here
 # #
-# # endpoint = 'http://api.openweathermap.org/data/2.5/weather' # see doc to customise your payload
+endpoint = 'http://api.openweathermap.org/data/2.5/weather' # see doc to customise your payload
 # #
-# # payload = {
-# #     'q': 'London,UK',
-# #     'unit': 'metrics',
-# #     'appid': appid,
-# # }
+payload = {
+     'q': 'London,UK',
+     'unit': 'metrics',
+     'appid': appid, }
 # #
-# # response = requests.get(url=endpoint, params=payload)
+response = requests.get(url=endpoint, params=payload)
 # #
-# # data = response.json()
+data = response.json()
 # #
 # #
-# # pp(data['name'])
-# # pp(data['weather'])
+pp(data['name'])
+pp(data['weather'])
 # #
-# # pp(data)
+pp(data)
 #
 #
 #
@@ -157,21 +155,21 @@ with open('space_station_location.txt', 'a') as text_file:
 #
 # You can retrieve information about different Pokemon from urls
 #
-# https://pokeapi.co/api/v2/pokemon/6/
+#https://pokeapi.co/api/v2/pokemon/6/
 # """
 #
-# # import requests
-# # from pprint import pprint
+import requests
+from pprint import pprint
 # #
-# # pokemon_number = input("What is the Pokemon's ID? ")
+pokemon_number = input("What is the Pokemon's ID? ")
 # #
-# # url = 'https://pokeapi.co/api/v2/pokemon/{}/'.format(pokemon_number) # note how we manupulate the url to request data!
+url = 'https://pokeapi.co/api/v2/pokemon/{}/'.format(pokemon_number) # note how we manupulate the url to request data! get pokemon id and add to the space
 # #
-# # response = requests.get(url)
-# # print(response)
+response = requests.get(url)
+print(response)
 # #
-# # pokemon = response.json()
-# # pprint(pokemon)
+pokemon = response.json()
+pprint(pokemon)
 #
 #
 # ### EXERCISE 5 ###
@@ -181,18 +179,18 @@ with open('space_station_location.txt', 'a') as text_file:
 # !!! Extension !!!: Print the names of all of a specific Pokemon's moves
 # """
 # #
-# # import requests
+import requests
 # #
-# # pokemon_number = input("What is the Pokemon's ID? ")
+pokemon_number = input("What is the Pokemon's ID? ")
 # #
-# # url = 'https://pokeapi.co/api/v2/pokemon/{}/'.format(pokemon_number)
+url = 'https://pokeapi.co/api/v2/pokemon/{}/'.format(pokemon_number)
 # #
-# # response = requests.get(url)
-# # pokemon = response.json()
+response = requests.get(url)
+pokemon = response.json()
 # #
-# # print(pokemon['name'])
-# # print(pokemon['height'])
-# # print(pokemon['weight'])
+print(pokemon['name'])
+print(pokemon['height'])
+print(pokemon['weight'])
 #
 #
 # """ EXTENSION - focuss on this part if you have time as it helps the homework  """
