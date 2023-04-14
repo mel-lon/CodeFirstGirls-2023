@@ -46,7 +46,7 @@ def can_pay(price, cash_given):
        return True
    else:
        return False
-	  5 marks
+
 
 # 1.8    What is git branching? Explain how it is used in Git.
 A feature of Git which allows software developers to create independent lines of development from the main code, creating a copy of the codebase at a specific point in time which do not affect the master copy of code in the main branch. changes to it can be made independently to be merged back into the main branch if desired. This is used by developers to  work on certain features in isolation, conduct bug fixes, without interfering with the work of others
