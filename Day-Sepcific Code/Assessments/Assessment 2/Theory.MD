@@ -67,7 +67,7 @@ b.	What are your main considerations and problems?
 c.	What components or tools would you potentially use? 
 -	Front-end development tools such as React to build the user interface. 
 -	Backend development tools such as Node.js, Ruby on Rails, or Django for building server-side logic.
--	Payment integration tools such as Stripe or PayPal for handling payment transactions.
+-	Payment integration tools such as Stripe or PayPal for handling payment transactions
 -	Cloud services such as AWS or Azure for the storage of data and scalability of the software
 
 

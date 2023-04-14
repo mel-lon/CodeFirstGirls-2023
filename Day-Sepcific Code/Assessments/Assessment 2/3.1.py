@@ -37,4 +37,4 @@ def minimum_classes_calculator(students):
     for k, v in class_order.items():
         print(f"{k}: {v} students")
 
-#print(minimum_classes_calculator(100))
+print(minimum_classes_calculator(100))
