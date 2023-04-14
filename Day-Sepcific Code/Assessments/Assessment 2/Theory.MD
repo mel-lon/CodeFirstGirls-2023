@@ -70,4 +70,4 @@ c.	What components or tools would you potentially use?
 -	Payment integration tools such as Stripe or PayPal for handling payment transactions.
 -	Cloud services such as AWS or Azure for the storage of data and scalability of the software
 
-
+###

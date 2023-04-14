@@ -76,3 +76,4 @@ INSERT INTO movie_info(movie_ID, movie_name, movie_length, age_rating)
 
 SELECT m.Movie_Name, s.Start_Time FROM movie_info m INNER JOIN showings s ON m.Movie_ID = s.Movie_ID WHERE s.Available_Seats >= 1;
 
+##
