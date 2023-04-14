@@ -18,7 +18,8 @@ The absence of a value in a a database
 
 
 # 1.6   Name 2 debugging methods, and when you would use them.	  4 marks
-
+1. The user can use a series of print statement after lines of code in order to show the output of the code at different points, which can be used ot determine the point at which the code is encountering a problem. For example, if there is a logical error
+2. The suer can be used the IDE's in-built debugger tool which parses the cod eline by line to identify the potential errors in the code, set breakpoints to pause execution at points which aids in solving complex bugs.
 
 # 1.7   Looking at the following code, describe a case where this function
            would throw an error when called. Describe this case and talk about
